@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261118/fenel-git/world-desk-20261118/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 [![reward](https://make.fun/badge/news-image-20261118/fenel-git/world-desk-20261118/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
-An illustrated, six-story editorial front page for 18 November 2026, covering geopolitics, Gaza, trade, AI chips, climate negotiations and tennis. Built for [make.fun](https://make.fun/bounty/news-image-20261118).
+A dense, illustrated editorial front page for **Wednesday 18 November 2026**: three lead scenes, ten illustrated regional cards, a geographically projected SVG world map and two columns of numbered briefs across six continents. Revised from the same account’s original six-story entry, using the reporting already cached during that build. Built for [make.fun](https://make.fun/bounty/news-image-20261118).
 
 ## Run
 
@@ -14,7 +14,11 @@ The checked-in `frontpage.png` is pre-rendered for a deterministic, network-free
 MAKEFUN_OUTPUT_DIR=out python3.13 main.py
 ```
 
-This writes `out/entry.png`. The standalone HTML/SVG source for the illustration is `frontpage.html`.
+This writes `out/entry.png`. `index.html` is the editable HTML/SVG source, with content in `stories.js` and original symbolic artwork in `illustrations.js`; `frontpage.html` is an identical HTML entrypoint. All assets are local: no remote fonts, scripts, or images are needed. The runtime uses Python’s standard library only and verifies the PNG header, dimensions and size before writing it.
+
+## Revision checks
+
+The Chromium render is exactly 1024×1024. `layout-audit.json` records the checked section bounds and empty overflow list. The design was visually inspected after correcting an initial bottom overflow. `SOURCES.md` maps each numbered item to saved reporting and distinguishes wire copy from other reporting. No new news search was used for this revision.
 
 ## Reporting sources
 

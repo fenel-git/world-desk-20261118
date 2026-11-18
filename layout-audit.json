@@ -1,0 +1,52 @@
+{
+  "title": "Wednesday 18 November 2026",
+  "bodyHeight": 1024,
+  "leads": 3,
+  "medium": 10,
+  "briefs": 16,
+  "svgs": 14,
+  "placeholder": false,
+  "bounds": {
+    "header": {
+      "x": 24,
+      "y": 19,
+      "w": 976,
+      "h": 99.875,
+      "bottom": 118.875,
+      "right": 1000
+    },
+    ".lead": {
+      "x": 24,
+      "y": 128.875,
+      "w": 976,
+      "h": 230.28125,
+      "bottom": 359.15625,
+      "right": 1000
+    },
+    ".mid": {
+      "x": 24,
+      "y": 367.15625,
+      "w": 976,
+      "h": 316.9375,
+      "bottom": 684.09375,
+      "right": 1000
+    },
+    ".bottom": {
+      "x": 24,
+      "y": 692.09375,
+      "w": 976,
+      "h": 287,
+      "bottom": 979.09375,
+      "right": 1000
+    },
+    "footer": {
+      "x": 24,
+      "y": 986.09375,
+      "w": 976,
+      "h": 19,
+      "bottom": 1005.09375,
+      "right": 1000
+    }
+  },
+  "overflow": []
+}
