@@ -27,7 +27,9 @@ The Chromium render is exactly 1024×1024. `layout-audit.json` records the check
 - [Reuters — U.S.–Philippines trade-deal claim and absence of announced terms](https://investing.com/news/world-news/trump-says-us-has-concluded-very-big-trade-deal-with-philippines-5034780)
 - [Reuters — Nvidia stops licensed AI-chip shipments to China](https://www.investing.com/news/stock-market-news/nvidia-stops-shipping-usapproved-ai-chips-to-china-5035204)
 - [AFP / France 24 — COP31 negotiations](https://www.france24.com/en/live-news/20261118-fault-lines-widen-as-cop31-struggles-for-climate-deal)
-- [ATP Tour — Alcaraz beats Medvedev 6–2, 6–4](https://www.atptour.com/es/news/nitto-atp-finals-2026-miercoles-fase-grupos-alcaraz-medvedev) · [BBC Sport — ATP Finals results](https://www.bbc.co.uk/sport/tennis/atp-world-tour-finals/scores-and-schedule/2026-11-18)
+- [Reuters via CNBC Africa — gold and Johannesburg stocks](https://www.cnbcafrica.com/2026/south-african-rand-slips-as-dollar-strength-local-government-uncertainties-weigh)
+- [Reuters via Investing.com — Rubio’s remarks on Washington](https://www.investing.com/news/world-news/iran-attacks-us-bases-in-gulf-countries-despite-diplomatic-efforts-5034906)
+- [Reuters via Finwire — Singapore iron ore prices](https://finwire.io/news/stock-markets-news/bhp-rio-tinto-executives-to-meet-china-leaders-as-iron-ore-pressure-builds)
 
 ---
 

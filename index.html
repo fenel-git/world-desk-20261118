@@ -7,7 +7,7 @@
 </style>
 <header><div class="strap"><span>The World Desk / International edition</span><span id="edition"></span></div><h1>Wednesday 18 November 2026</h1></header>
 <main><section class="news lead" aria-label="Lead stories"></section><section class="news mid" aria-label="Regional stories"></section>
-<section class="bottom"><aside class="map"><h2 class="label">Where it happened</h2><div class="atlas"><svg viewBox="0 0 340 174" role="img" aria-label="Story locations matching the numbered headlines"></svg></div><div class="legend"></div><p>Numbers locate the 13 illustrated stories. Dots locate the briefs. Some pins mark a national capital or corporate headquarters.</p></aside>
+<section class="bottom"><aside class="map"><h2 class="label">Where it happened</h2><div class="atlas"><svg viewBox="0 0 340 174" role="img" aria-label="Story locations matching the numbered headlines"></svg></div><div class="legend"></div><p>Numbers locate the 13 illustrated stories. Dots locate the briefs. Some pins mark a capital, headquarters or market reference.</p></aside>
 <section><h2 class="label">News in brief / 14–21</h2><ol class="briefs" id="brief-a"></ol></section><section><h2 class="label">News in brief / 22–29</h2><ol class="briefs" id="brief-b"></ol></section></section></main>
 <footer><span>Reuters · AP · AFP / Source notes by story</span><span>18 November dispatches · Symbolic illustrations, not photographs</span></footer>
 <script src="stories.js"></script><script src="illustrations.js"></script>
@@ -25,7 +25,7 @@ all('#brief-a').innerHTML=stories.slice(13,21).map((s,j)=>brief(s,j+13)).join(''
 all('#brief-b').innerHTML=stories.slice(21).map((s,j)=>brief(s,j+21)).join('');
 all('.legend').innerHTML=Object.values(regions).map(([n,c])=>`<span style="--color:${c}"><i></i>${n}</span>`).join('');
 const project=(lat,lon)=>[8+(lon+180)*.9,12+(83-lat)*1.06];
-const offsets=[[-11,-18],[-15,22],[0,-16],[12,17],[12,14],[-27,12],[22,-16],[-28,-12],[8,12],[-18,14],[19,10],[0,-28],[-6,31]];
+const offsets=[[-11,-18],[-15,22],[0,-16],[12,17],[12,14],[-16,18],[22,-16],[-9,-19],[8,12],[-18,14],[19,10],[0,-28],[-6,31]];
 const pins=stories.map((s,i)=>{
  const [x,y]=project(s[2],s[3]),color=regions[s[1]][1];
  if(i>=13)return `<circle cx="${x}" cy="${y}" r="2.9" fill="${color}" stroke="#fff" stroke-width=".8"><title>${i+1} ${s[0]}</title></circle>`;
