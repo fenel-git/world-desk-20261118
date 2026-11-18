@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261118/fenel-git/world-desk-20261118/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 [![reward](https://make.fun/badge/news-image-20261118/fenel-git/world-desk-20261118/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
-A dense, illustrated editorial front page for **Wednesday 18 November 2026**: three lead scenes, ten illustrated regional cards, a geographically projected SVG world map and two columns of numbered briefs across six continents. Revised from the same account’s original six-story entry, using the reporting already cached during that build. Built for [make.fun](https://make.fun/bounty/news-image-20261118).
+The World Desk for **Wednesday 18 November 2026** covers 31 dispatches across six continents and space. It retains three lead scenes, ten illustrated secondary cards, the numbered world map and two columns of briefs. This edition uses larger headlines, consolidates related reports and adds separately sourced developments. Built for [make.fun](https://make.fun/bounty/news-image-20261118).
 
 ## Run
 
@@ -18,7 +18,7 @@ This writes `out/entry.png`. `index.html` is the editable HTML/SVG source, with 
 
 ## Revision checks
 
-The Chromium render is exactly 1024×1024. `layout-audit.json` records the checked section bounds and empty overflow list. The design was visually inspected after correcting an initial bottom overflow. `SOURCES.md` maps each numbered item to saved reporting and distinguishes wire copy from other reporting. No new news search was used for this revision.
+The Chromium render is exactly 1024×1024. `layout-audit.json` records all 31 stories and section bounds; the last footer edge is within the canvas. A 300×300 thumbnail and a second layout variant were rendered and visually compared with R2 and public Top 20 images. The bolder, larger-type candidate was selected; this is a design judgment, not a predicted judge score. `SOURCES.md` maps every item to reporting and distinguishes dates, forecasts and allegations. Most reporting and artwork were reused from R2; targeted free public-page checks added missing space, science, Africa and policy coverage. No paid judge calls or credits were bought.
 
 ## Reporting sources
 

@@ -1,0 +1,43 @@
+/* Keep the broadsheet structure, but reserve the larger type for what happened. */
+:root{--paper:#fcf2e4;--ink:#211914;--sub:#44382e;--rule:#b29a82;--red:#8e2c26}
+body{padding:16px 20px 10px}
+header{padding:6px 0 7px}
+.strap{font-size:15px;letter-spacing:.09em}
+h1{font-size:54px;line-height:1.09}
+.lead{gap:10px;margin-top:9px;padding-bottom:9px}
+.lead svg{height:67px}
+.meta{font-size:13px;letter-spacing:.025em;line-height:1.05;margin:4px 0 3px}
+.num{min-width:18px;height:18px;font-size:11px}
+.lead h2{font-size:34px;line-height:1;letter-spacing:-.035em}
+.lead p{font-size:20px;line-height:1.08;margin-top:4px}
+.mid{gap:8px 10px;margin-top:8px;padding-bottom:8px}
+.mid article{border-top:2px solid var(--color);padding-top:2px}
+.mid svg{height:29px}
+.mid h2{font-size:25px;line-height:1.01;letter-spacing:-.025em}
+.mid p{font-size:17px;line-height:1.1;margin-top:3px}
+.bottom{grid-template-columns:24% 1fr 1fr;gap:9px;margin-top:8px}
+.map{padding:6px}
+.atlas{margin-top:6px}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:8px 0 6px;font-size:13px}
+.map p{font-size:14px;line-height:1.19}
+.label{font-size:15px;letter-spacing:.07em;margin-bottom:5px}
+.briefs li{font-family:Arial,sans-serif;font-size:21px;line-height:1.06;margin:0;padding:3px 0;border-top:1px solid #d5c2ad}
+.briefs .num{margin-top:2px}
+footer{font-size:12px;letter-spacing:.045em;margin-top:6px}
+/* The thumbnail is the primary reading surface. Keep the news cards compact. */
+h1{font-size:49px}
+.lead svg{height:64px}
+.lead h2{font-size:29px}
+.lead p{font-size:17px;line-height:1.12}
+.mid svg{height:28px}
+.mid h2{font-size:23px;line-height:1.04}
+.mid p{display:none}
+.mid{row-gap:7px}
+.meta{min-height:15px}
+.bottom{grid-template-columns:22% 1fr 1fr}
+.briefs{gap:0}
+.briefs li{font-size:18.5px;line-height:1.1;padding:2px 0;font-weight:600}
+footer{font-size:10px;letter-spacing:0}
+body.open .bottom{grid-template-columns:27% 1fr 1fr}
+body.open .briefs li{font-size:17.5px;line-height:1.12;font-weight:500}
+body.open .lead svg{height:78px}
