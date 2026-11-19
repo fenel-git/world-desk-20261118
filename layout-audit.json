@@ -5,33 +5,88 @@
     10,
     18
   ],
+  "height": 1024,
   "sections": [
     {
-      "bottom": 106.40625,
-      "name": "HEADER.",
-      "top": 16
+      "name": "header",
+      "top": 16,
+      "bottom": 109.67
     },
     {
-      "bottom": 314.46875,
-      "name": "SECTION.news lead",
-      "top": 115.40625
+      "name": ".lead",
+      "top": 115.67,
+      "bottom": 332.45
     },
     {
-      "bottom": 572,
-      "name": "SECTION.news mid",
-      "top": 322.46875
+      "name": ".mid",
+      "top": 337.45,
+      "bottom": 612.2
     },
     {
-      "bottom": 973.5,
-      "name": "SECTION.bottom",
-      "top": 580
+      "name": ".bottom",
+      "top": 616.2,
+      "bottom": 998.3
     },
     {
-      "bottom": 998.5,
-      "name": "FOOTER.",
-      "top": 979.5
+      "name": "footer",
+      "top": 1000.3,
+      "bottom": 1018.3
     }
   ],
-  "height": 1024,
+  "typography_px": {
+    "lead": 34,
+    "card": 25,
+    "brief": 20.2
+  },
+  "responsive": [
+    {
+      "width": 600,
+      "variant": "default",
+      "typography_px": {
+        "lead": 17,
+        "card": 17,
+        "brief": 15.5
+      },
+      "horizontal_overflow": false,
+      "text_overflow": 0,
+      "footer_bottom_px": 2145
+    },
+    {
+      "width": 600,
+      "variant": "open",
+      "typography_px": {
+        "lead": 17,
+        "card": 17,
+        "brief": 15.5
+      },
+      "horizontal_overflow": false,
+      "text_overflow": 0,
+      "footer_bottom_px": 2124
+    },
+    {
+      "width": 300,
+      "variant": "default",
+      "typography_px": {
+        "lead": 17,
+        "card": 17,
+        "brief": 15.5
+      },
+      "horizontal_overflow": false,
+      "text_overflow": 0,
+      "footer_bottom_px": 2788
+    },
+    {
+      "width": 300,
+      "variant": "open",
+      "typography_px": {
+        "lead": 17,
+        "card": 17,
+        "brief": 15.5
+      },
+      "horizontal_overflow": false,
+      "text_overflow": 0,
+      "footer_bottom_px": 2788
+    }
+  ],
   "errors": []
 }

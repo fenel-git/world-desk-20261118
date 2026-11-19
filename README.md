@@ -18,7 +18,7 @@ This writes `out/entry.png`. `index.html` is the editable HTML/SVG source, with 
 
 ## Revision checks
 
-The Chromium render is exactly 1024×1024. `layout-audit.json` records all 31 stories and section bounds; the last footer edge is within the canvas. A 300×300 thumbnail and a second layout variant were rendered and visually compared with R2 and public Top 20 images. The bolder, larger-type candidate was selected; this is a design judgment, not a predicted judge score. `SOURCES.md` maps every item to reporting and distinguishes dates, forecasts and allegations. Most reporting and artwork were reused from R2; targeted free public-page checks added missing space, science, Africa and policy coverage. No paid judge calls or credits were bought.
+The Chromium render is exactly 1024×1024. `layout-audit.json` records the measured desktop section bounds and responsive checks; the footer stays inside the square canvas. The larger-type edition uses 34px lead headlines, 25px secondary headlines and 20.2px briefs on the default square view. `layout-check.html` is a self-contained browser audit of both layout variants at 1024px, 600px and 300px; it checks text overflow, horizontal overflow and the square footer bound. At narrow widths the page reflows into one column. `SOURCES.md` maps every item to reporting and distinguishes dates, forecasts and allegations. Most reporting and artwork were reused from R2; targeted free public-page checks added missing space, science, Africa and policy coverage. No paid judge calls or credits were bought.
 
 ## Reporting sources
 

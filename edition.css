@@ -25,19 +25,45 @@ h1{font-size:54px;line-height:1.09}
 .briefs .num{margin-top:2px}
 footer{font-size:12px;letter-spacing:.045em;margin-top:6px}
 /* The thumbnail is the primary reading surface. Keep the news cards compact. */
-h1{font-size:49px}
-.lead svg{height:64px}
-.lead h2{font-size:29px}
-.lead p{font-size:17px;line-height:1.12}
-.mid svg{height:28px}
-.mid h2{font-size:23px;line-height:1.04}
+h1{font-size:52px}
+.lead{margin-top:6px;padding-bottom:5px}
+.lead svg{height:42px}
+.lead h2{font-size:34px}
+.lead p{font-size:17.5px;line-height:1.08}
+.mid{margin-top:5px;padding-bottom:5px;row-gap:2px}
+.mid svg{height:16px}
+.mid h2{font-size:25px;line-height:1.01}
 .mid p{display:none}
-.mid{row-gap:7px}
-.meta{min-height:15px}
-.bottom{grid-template-columns:22% 1fr 1fr}
+.meta{min-height:14px}
+.bottom{grid-template-columns:22% 1fr 1fr;margin-top:4px}
 .briefs{gap:0}
-.briefs li{font-size:18.5px;line-height:1.1;padding:2px 0;font-weight:600}
-footer{font-size:10px;letter-spacing:0}
-body.open .bottom{grid-template-columns:27% 1fr 1fr}
-body.open .briefs li{font-size:17.5px;line-height:1.12;font-weight:500}
-body.open .lead svg{height:78px}
+.briefs li{font-size:20.2px;line-height:1.02;padding:0;font-weight:600}
+body{padding-bottom:0}
+footer{font-size:9px;letter-spacing:0;margin-top:2px}
+body.open .bottom{grid-template-columns:22% 1fr 1fr}
+body.open .briefs li{font-size:19.2px;line-height:1.04;font-weight:600}
+body.open .lead svg{height:42px}
+
+@media(max-width:600px){
+ html,body{width:100%;min-width:0;min-height:100%;height:auto}
+ body{padding:12px}
+ header{padding:8px 0}
+ .strap{gap:6px;flex-wrap:wrap;font-size:10px;letter-spacing:.07em}
+ h1{font-size:clamp(29px,9vw,44px);line-height:1.02;letter-spacing:-.04em}
+ .lead,.mid{grid-template-columns:minmax(0,1fr);gap:8px;margin-top:10px;padding-bottom:10px}
+ .lead article,.mid article{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:start;column-gap:8px;padding:5px 0;border-top:1px solid var(--color)}
+ .lead article svg,.mid article svg{grid-column:1;grid-row:1/4;width:64px;height:64px}
+ .lead .meta,.mid .meta{grid-column:2;grid-row:1;margin:0 0 2px;min-height:0;font-size:10px}
+ .lead h2,.mid h2{grid-column:2;grid-row:2;font-size:17px;line-height:1.08}
+ .lead p,.mid p{grid-column:2;grid-row:3;display:block;font-size:13px;line-height:1.2;margin-top:3px}
+ .bottom,body.open .bottom{grid-template-columns:minmax(0,1fr);gap:14px}
+ .map{padding:8px}
+ .atlas{max-width:340px;margin:7px auto 0}
+ .legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));font-size:12px}
+ .map p{font-size:13px}
+ .bottom>section{min-width:0}
+ .label{font-size:13px}
+ .briefs li,body.open .briefs li{font-size:15.5px;line-height:1.2;padding:3px 0}
+ .briefs .num{margin-top:2px}
+ footer{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;font-size:10px;letter-spacing:0;line-height:1.2}
+}
