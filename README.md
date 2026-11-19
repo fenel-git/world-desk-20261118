@@ -14,7 +14,7 @@ The checked-in `frontpage.png` is pre-rendered for a deterministic, network-free
 MAKEFUN_OUTPUT_DIR=out python3.13 main.py
 ```
 
-This writes `out/entry.png`. `index.html` is the editable HTML/SVG source, with content in `stories.js` and original symbolic artwork in `illustrations.js`; `frontpage.html` is an identical HTML entrypoint. All assets are local: no remote fonts, scripts, or images are needed. The runtime uses Python’s standard library only and verifies the PNG header, dimensions and size before writing it.
+This writes `out/entry.png`. `index.html` is the editable HTML/SVG source, with content in `stories.js` and original symbolic artwork in `illustrations.js`; `frontpage.html` is an identical HTML entrypoint. All assets are local: no remote fonts, scripts, or images are needed. The runtime uses Python’s standard library only and verifies every PNG chunk checksum, the 1024×1024 dimensions, complete IEND marker and size before writing it. `python -m unittest test_main.py -v` exercises valid, corrupt and trailing-data cases.
 
 ## Revision checks
 
