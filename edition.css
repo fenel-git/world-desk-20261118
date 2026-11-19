@@ -1,89 +1,39 @@
-/* Keep the broadsheet structure, but reserve the larger type for what happened. */
+/* R4 square composition: headline-first, eleven cards, no brief strip. */
 :root{--paper:#fcf2e4;--ink:#211914;--sub:#44382e;--rule:#b29a82;--red:#8e2c26}
-body{padding:16px 20px 10px}
-header{padding:6px 0 7px}
-.strap{font-size:15px;letter-spacing:.09em}
-h1{font-size:54px;line-height:1.09}
-.lead{gap:10px;margin-top:9px;padding-bottom:9px}
-.lead svg{height:67px}
-.meta{font-size:13px;letter-spacing:.025em;line-height:1.05;margin:4px 0 3px}
-.num{min-width:18px;height:18px;font-size:11px}
-.lead h2{font-size:34px;line-height:1;letter-spacing:-.035em}
-.lead p{font-size:20px;line-height:1.08;margin-top:4px}
-.mid{gap:8px 10px;margin-top:8px;padding-bottom:8px}
-.mid article{border-top:2px solid var(--color);padding-top:2px}
-.mid svg{height:29px}
-.mid h2{font-size:25px;line-height:1.01;letter-spacing:-.025em}
-.mid p{font-size:17px;line-height:1.1;margin-top:3px}
-.bottom{grid-template-columns:24% 1fr 1fr;gap:9px;margin-top:8px}
-.map{padding:6px}
-.atlas{margin-top:6px}
-.legend{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:8px 0 6px;font-size:13px}
-.map p{font-size:14px;line-height:1.19}
-.label{font-size:15px;letter-spacing:.07em;margin-bottom:5px}
-.briefs li{font-family:Arial,sans-serif;font-size:21px;line-height:1.06;margin:0;padding:3px 0;border-top:1px solid #d5c2ad}
-.briefs .num{margin-top:2px}
-footer{font-size:12px;letter-spacing:.045em;margin-top:6px}
-/* The thumbnail is the primary reading surface. Keep the news cards compact. */
-h1{font-size:52px}
-.lead{margin-top:6px;padding-bottom:5px}
-.lead svg{height:42px}
-.lead h2{font-size:34px}
-.lead p{font-size:17.5px;line-height:1.08}
-.mid{margin-top:5px;padding-bottom:5px;row-gap:2px}
-.mid svg{height:16px}
-.mid h2{font-size:25px;line-height:1.01}
-.mid p{display:none}
-.meta{min-height:14px}
-.bottom{grid-template-columns:22% 1fr 1fr;margin-top:4px}
-.briefs{gap:0}
-.briefs li{font-size:20.2px;line-height:1.02;padding:0;font-weight:600}
-body{padding-bottom:0}
-footer{font-size:9px;letter-spacing:0;margin-top:2px}
-body.open .bottom{grid-template-columns:22% 1fr 1fr}
-body.open .briefs li{font-size:19.2px;line-height:1.04;font-weight:600}
-/* R4: eleven selected headlines; remove the dense brief strip for a clean square. */
-body{padding:20px 22px 14px}
-header{padding:10px 0 12px}
-h1{font-size:62px}
-.strap{font-size:16px}
-.lead{gap:14px;margin-top:14px;padding-bottom:14px}
+*{box-sizing:border-box}
+html,body{width:1024px;min-height:1024px;margin:0}
+body{padding:20px 22px 14px;background:var(--paper);color:var(--ink);font:14px Arial,sans-serif}
+h1,h2,p{margin:0}
+header{padding:10px 0 12px;border-top:4px solid var(--ink);border-bottom:2px solid var(--ink)}
+.strap,footer{display:flex;justify-content:space-between;text-transform:uppercase;font-weight:bold;letter-spacing:.09em;font-size:16px;color:var(--red)}
+h1,h2{font-family:Georgia,serif}
+h1{text-align:center;font-size:62px;line-height:1.04;letter-spacing:-.045em}
+.news{display:grid}
+.lead{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:14px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
+.mid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 12px;margin-top:14px}
+article{min-width:0}
+article svg{display:block;width:100%;height:48px}
 .lead svg{height:100px}
+.meta{display:flex;align-items:center;gap:5px;margin:4px 0 3px;text-transform:uppercase;letter-spacing:.025em;font-size:13px;font-weight:800;color:var(--color)}
+.num{background:var(--color);color:white;display:inline-grid;place-items:center;min-width:18px;height:18px;border-radius:50%;font:bold 11px Arial;flex:none}
+article h2{font-size:27px;line-height:1.04;letter-spacing:-.025em}
+article p{font-size:18px;line-height:1.14;color:var(--sub);margin-top:4px}
 .lead h2{font-size:34px;line-height:1.04}
 .lead p{font-size:19px;line-height:1.15}
-.mid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 12px;margin-top:14px}
-.mid svg{height:48px}
-.mid h2{font-size:27px;line-height:1.04}
-.mid p{display:block;font-size:18px;line-height:1.14}
+.mid article{border-top:2px solid var(--color);padding-top:2px}
 .bottom{display:none}
-footer{margin-top:12px;font-size:13px}
-@media(max-width:600px){
- .lead,.mid{grid-template-columns:minmax(0,1fr)}
- .lead article,.mid article{display:grid;grid-template-columns:76px minmax(0,1fr)}
- .lead h2,.mid h2{font-size:20px}
- .lead p,.mid p{font-size:15px}
-}
-
+footer{margin-top:12px;font-size:13px;letter-spacing:.045em}
 @media(max-width:600px){
  html,body{width:100%;min-width:0;min-height:100%;height:auto}
  body{padding:12px}
  header{padding:8px 0}
- .strap{gap:6px;flex-wrap:wrap;font-size:10px;letter-spacing:.07em}
- h1{font-size:clamp(29px,9vw,44px);line-height:1.02;letter-spacing:-.04em}
+ h1{font-size:clamp(29px,9vw,44px);line-height:1.02}
+ .strap{gap:6px;flex-wrap:wrap;font-size:10px}
  .lead,.mid{grid-template-columns:minmax(0,1fr);gap:8px;margin-top:10px;padding-bottom:10px}
- .lead article,.mid article{display:grid;grid-template-columns:64px minmax(0,1fr);align-items:start;column-gap:8px;padding:5px 0;border-top:1px solid var(--color)}
- .lead article svg,.mid article svg{grid-column:1;grid-row:1/4;width:64px;height:64px}
- .lead .meta,.mid .meta{grid-column:2;grid-row:1;margin:0 0 2px;min-height:0;font-size:10px}
- .lead h2,.mid h2{grid-column:2;grid-row:2;font-size:17px;line-height:1.08}
- .lead p,.mid p{grid-column:2;grid-row:3;display:block;font-size:13px;line-height:1.2;margin-top:3px}
- .bottom,body.open .bottom{grid-template-columns:minmax(0,1fr);gap:14px}
- .map{padding:8px}
- .atlas{max-width:340px;margin:7px auto 0}
- .legend{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));font-size:12px}
- .map p{font-size:13px}
- .bottom>section{min-width:0}
- .label{font-size:13px}
- .briefs li,body.open .briefs li{font-size:15.5px;line-height:1.2;padding:3px 0}
- .briefs .num{margin-top:2px}
- footer{display:grid;grid-template-columns:minmax(0,1fr);gap:5px;font-size:10px;letter-spacing:0;line-height:1.2}
+ .lead article,.mid article{display:grid;grid-template-columns:76px minmax(0,1fr);column-gap:8px;padding:5px 0}
+ .lead article svg,.mid article svg{grid-column:1;grid-row:1/4;width:76px;height:64px}
+ .lead .meta,.mid .meta{grid-column:2;grid-row:1;margin:0 0 2px;font-size:10px}
+ .lead h2,.mid h2{grid-column:2;grid-row:2;font-size:20px}
+ .lead p,.mid p{grid-column:2;grid-row:3;font-size:15px;line-height:1.2}
+ footer{display:grid;gap:5px;font-size:10px;line-height:1.2}
 }
