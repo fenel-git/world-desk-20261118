@@ -1,85 +1,103 @@
-"""R4 entry: validate and copy the deterministic 1024px World Desk image."""
-from os import environ
+"""Publish the offline World Desk raster after checking its complete RGB payload."""
+
+import os
 from pathlib import Path
-from struct import unpack
-from zlib import crc32
+from struct import Struct
+from tempfile import NamedTemporaryFile
+import zlib
 
-SIGNATURE = b"\x89PNG\r\n\x1a\n"
-EXPECTED_SIZE = (1024, 1024)
-MAX_BYTES = 1_048_576
-
-
-def read_chunk(blob: bytes, start: int):
-    """Return (tag, payload, next_position), rejecting damaged chunks."""
-    if start + 12 > len(blob):
-        raise ValueError("truncated PNG chunk header")
-    length = unpack(">I", blob[start:start + 4])[0]
-    finish = start + 12 + length
-    if finish > len(blob):
-        raise ValueError("truncated PNG chunk payload")
-    tag = blob[start + 4:start + 8]
-    payload = blob[start + 8:start + 8 + length]
-    checksum = unpack(">I", blob[start + 8 + length:finish])[0]
-    if crc32(tag + payload) & 0xffffffff != checksum:
-        raise ValueError("PNG checksum mismatch")
-    return tag, payload, finish
+PNG_MAGIC = bytes.fromhex('89504e470d0a1a0a')
+SIDE = 1024
+BYTE_LIMIT = 1 << 20
+ROW_BYTES = 1 + SIDE * 3  # Filter selector followed by RGB triples.
+CHUNK_HEADER = Struct('>I4s')
+UINT = Struct('>I')
+RGB_HEADER = Struct('>IIBBBBB').pack(SIDE, SIDE, 8, 2, 0, 0, 0)
 
 
-def validate_png(blob: bytes) -> None:
-    """Check dimensions, legal color depth, ordered data, and exact termination."""
-    if not blob.startswith(SIGNATURE):
-        raise ValueError("frontpage.png is not a PNG")
-    if len(blob) > MAX_BYTES:
-        raise ValueError("frontpage.png exceeds the one MiB limit")
-    position = len(SIGNATURE)
-    header = False
-    saw_data = False
-    closed_data = False
-    while position < len(blob):
-        tag, payload, position = read_chunk(blob, position)
-        if not header:
-            if tag != b"IHDR" or len(payload) != 13:
-                raise ValueError("PNG must start with a single IHDR")
-            width, height = unpack(">II", payload[:8])
-            depth, color, compression, filtering, interlace = payload[8:13]
-            depths = {0: {1, 2, 4, 8, 16}, 2: {8, 16}, 3: {1, 2, 4, 8}, 4: {8, 16}, 6: {8, 16}}
-            if (width, height) != EXPECTED_SIZE:
-                raise ValueError("frontpage.png must be 1024 by 1024")
-            if color not in depths or depth not in depths[color]:
-                raise ValueError("PNG bit depth is illegal for its color type")
-            if (compression, filtering) != (0, 0) or interlace not in (0, 1):
-                raise ValueError("PNG header method is unsupported")
-            header = True
-        elif tag == b"IHDR":
-            raise ValueError("PNG has duplicate IHDR")
-        if tag == b"IDAT":
-            if closed_data:
-                raise ValueError("PNG IDAT chunks must be consecutive")
-            saw_data = True
-        elif saw_data and tag != b"IEND":
-            closed_data = True
-        if tag == b"IEND":
-            if payload or not saw_data or position != len(blob):
-                raise ValueError("PNG has an invalid or trailing IEND")
+def png_records(image):
+    """Yield verified chunk name and data as views rather than copying each record."""
+    if len(image) > BYTE_LIMIT or not image.startswith(PNG_MAGIC):
+        raise ValueError('Expected a PNG of at most 1 MiB')
+    view = memoryview(image)
+    cursor = len(PNG_MAGIC)
+    while cursor < len(view):
+        if len(view) - cursor < 12:
+            raise ValueError('Incomplete PNG chunk framing')
+        count, name = CHUNK_HEADER.unpack_from(view, cursor)
+        end = cursor + CHUNK_HEADER.size + count
+        if end + UINT.size > len(view):
+            raise ValueError('Incomplete PNG chunk data')
+        if zlib.crc32(view[cursor + UINT.size:end]) != UINT.unpack_from(view, end)[0]:
+            raise ValueError(f'Bad checksum for {name!r}')
+        payload = view[cursor + CHUNK_HEADER.size:end]
+        cursor = end + UINT.size
+        if name == b'IEND' and (payload or cursor != len(view)):
+            raise ValueError('IEND must be empty and end the image')
+        yield name, payload
+
+
+def check_scanlines(compressed):
+    expected = ROW_BYTES * SIDE
+    inflater = zlib.decompressobj()
+    try:
+        scanlines = inflater.decompress(compressed, expected + 1)
+    except zlib.error as error:
+        raise ValueError('Corrupt PNG pixel stream') from error
+    if len(scanlines) != expected or not inflater.eof or inflater.unused_data:
+        raise ValueError('PNG pixel stream does not match its header')
+    if max(scanlines[::ROW_BYTES]) > 4:
+        raise ValueError('Invalid PNG row filter')
+
+
+def inspect_frontpage(image):
+    """Accept the raster profile emitted by the frontpage export, not arbitrary PNGs."""
+    records = iter(png_records(image))
+    if next(records, None) != (b'IHDR', RGB_HEADER):
+        raise ValueError('Expected 1024×1024, eight-bit RGB, non-interlaced')
+    compressed = bytearray()
+    data_closed = False
+    for name, payload in records:
+        if name == b'IEND':
+            if not compressed:
+                raise ValueError('PNG has no pixel data')
+            check_scanlines(compressed)
             return
-    raise ValueError("PNG is missing IEND")
+        if name == b'IDAT':
+            if data_closed:
+                raise ValueError('Image data chunks must be adjacent')
+            compressed.extend(payload)
+        elif name in (b'sRGB', b'gAMA', b'cHRM', b'pHYs', b'iCCP', b'sBIT'):
+            if compressed and name != b'pHYs':
+                raise ValueError('Color metadata must precede pixel data')
+            data_closed |= bool(compressed)
+        else:
+            raise ValueError(f'Unexpected frontpage chunk: {name!r}')
+    raise ValueError('PNG has no end marker')
 
 
-def render(output_root: Path) -> Path:
-    """Copy the checked-in render to the sandbox output path."""
-    source = Path(__file__).with_name("frontpage.png")
-    image = source.read_bytes()
-    validate_png(image)
-    output_root.mkdir(parents=True, exist_ok=True)
-    target = output_root / "entry.png"
-    target.write_bytes(image)
+def publish(image, directory):
+    """Install a validated complete file without leaving a partial final artifact."""
+    inspect_frontpage(image)
+    directory.mkdir(parents=True, exist_ok=True)
+    target = directory / 'entry.png'
+    with NamedTemporaryFile(dir=directory, prefix='.frontpage-', delete=False) as spool:
+        staged = Path(spool.name)
+        try:
+            spool.write(image)
+            spool.close()
+            staged.replace(target)
+        finally:
+            staged.unlink(missing_ok=True)
     return target
 
 
-def main() -> None:
-    destination = Path(environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
-    render(destination)
+def main():
+    repository = Path(__file__).resolve().parent
+    with (repository / 'frontpage.png').open('rb') as source:
+        image = source.read(BYTE_LIMIT + 1)
+    publish(image, Path(os.environ.get('MAKEFUN_OUTPUT_DIR', '/output')))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
