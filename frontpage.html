@@ -21,13 +21,12 @@ const place=(s)=>`style="--color:${regions[s[1]][1]}"`;
 const badge=(i)=>`<span class="num">${i+1}</span>`;
 function article(s,i){return `<article ${place(s)}>${artwork(s[6],i<3)}<div class="meta">${badge(i)}${s[0]}</div><h2>${s[4]}</h2><p>${s[5]}</p></article>`;}
 function brief(s,i){return `<li ${place(s)}>${badge(i)}<span>${s[4]}</span></li>`;}
-const leadCount=3, middleCount=8;
-all('#edition').textContent=`${stories.length} stories / six continents`;
-all('.lead').innerHTML=stories.slice(0,leadCount).map(article).join('');
-all('.mid').innerHTML=stories.slice(leadCount,leadCount+middleCount).map((s,j)=>article(s,j+leadCount)).join('');
-const breaks=leadCount+middleCount+Math.ceil((stories.length-leadCount-middleCount)/2);
-all('#brief-a').innerHTML=stories.slice(leadCount+middleCount,breaks).map((s,j)=>brief(s,j+leadCount+middleCount)).join('');
-all('#brief-b').innerHTML=stories.slice(breaks).map((s,j)=>brief(s,j+breaks)).join('');
+const selected=[0,1,2,3,4,5,7,8,9,10,14].map(i=>stories[i]);
+all('#edition').textContent=`${selected.length} selected / six continents`;
+all('.lead').innerHTML=selected.slice(0,3).map(article).join('');
+all('.mid').innerHTML=selected.slice(3).map((s,j)=>article(s,j+3)).join('');
+all('#brief-a').innerHTML='';
+all('#brief-b').innerHTML='';
 all('.legend').innerHTML=Object.values(regions).slice(0,6).map(([n,c])=>`<span style="--color:${c}"><i></i>${n}</span>`).join('');
 const project=(lat,lon)=>[8+(lon+180)*.9,12+(83-lat)*1.06];
 const offsets=[[-10,-19],[27,-4],[0,-16],[-12,25],[7,-19],[-29,-14],[0,0],[30,-16],[15,15],[12,18],[-18,13],[14,-25],[-23,16]];
