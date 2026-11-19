@@ -42,7 +42,19 @@ body{padding-bottom:0}
 footer{font-size:9px;letter-spacing:0;margin-top:2px}
 body.open .bottom{grid-template-columns:22% 1fr 1fr}
 body.open .briefs li{font-size:19.2px;line-height:1.04;font-weight:600}
-body.open .lead svg{height:42px}
+/* R4 thumbnail-first hierarchy: generous scene art and readable secondary cards. */
+.lead svg{height:82px}
+.mid svg{height:36px}
+.mid{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px 12px}
+.mid p{display:block;font-size:15px;line-height:1.12}
+.mid h2{font-size:23px;line-height:1.04}
+body.open .mid p{display:block}
+body.open .mid svg{height:36px}
+body.open .lead svg{height:82px}
+@media(max-width:600px){
+ .lead svg,.mid svg{height:64px}
+ .mid p{display:block}
+}
 
 @media(max-width:600px){
  html,body{width:100%;min-width:0;min-height:100%;height:auto}

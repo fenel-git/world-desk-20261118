@@ -21,11 +21,12 @@ const place=(s)=>`style="--color:${regions[s[1]][1]}"`;
 const badge=(i)=>`<span class="num">${i+1}</span>`;
 function article(s,i){return `<article ${place(s)}>${artwork(s[6],i<3)}<div class="meta">${badge(i)}${s[0]}</div><h2>${s[4]}</h2><p>${s[5]}</p></article>`;}
 function brief(s,i){return `<li ${place(s)}>${badge(i)}<span>${s[4]}</span></li>`;}
-all('#edition').textContent=`${stories.length} stories / 6 continents + space`;
-all('.lead').innerHTML=stories.slice(0,3).map(article).join('');
-all('.mid').innerHTML=stories.slice(3,13).map((s,j)=>article(s,j+3)).join('');
-const breaks=13+Math.ceil((stories.length-13)/2);
-all('#brief-a').innerHTML=stories.slice(13,breaks).map((s,j)=>brief(s,j+13)).join('');
+const leadCount=3, middleCount=8;
+all('#edition').textContent=`${stories.length} stories / six continents`;
+all('.lead').innerHTML=stories.slice(0,leadCount).map(article).join('');
+all('.mid').innerHTML=stories.slice(leadCount,leadCount+middleCount).map((s,j)=>article(s,j+leadCount)).join('');
+const breaks=leadCount+middleCount+Math.ceil((stories.length-leadCount-middleCount)/2);
+all('#brief-a').innerHTML=stories.slice(leadCount+middleCount,breaks).map((s,j)=>brief(s,j+leadCount+middleCount)).join('');
 all('#brief-b').innerHTML=stories.slice(breaks).map((s,j)=>brief(s,j+breaks)).join('');
 all('.legend').innerHTML=Object.values(regions).slice(0,6).map(([n,c])=>`<span style="--color:${c}"><i></i>${n}</span>`).join('');
 const project=(lat,lon)=>[8+(lon+180)*.9,12+(83-lat)*1.06];

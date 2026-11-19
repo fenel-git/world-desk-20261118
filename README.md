@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/news-image-20261118/fenel-git/world-desk-20261118/rank.svg)](https://make.fun/bounty/news-image-20261118/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 [![reward](https://make.fun/badge/news-image-20261118/fenel-git/world-desk-20261118/reward.svg)](https://make.fun/bounty/news-image-20261118?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261118)
 
-The World Desk for **Wednesday 18 November 2026** covers 31 dispatches across six continents and space. It retains three lead scenes, ten illustrated secondary cards, the numbered world map and two columns of briefs. This edition uses larger headlines, consolidates related reports and adds separately sourced developments. Built for [make.fun](https://make.fun/bounty/news-image-20261118).
+The World Desk for **Wednesday 18 November 2026** presents 19 selected dispatches across six continents plus a NASA milestone in deep space. Three lead scenes anchor eight illustrated regional cards and eight brief headlines. Compact one-sentence decks retain attribution and uncertainty where needed. Built for [make.fun](https://make.fun/bounty/news-image-20261118).
 
 ## Run
 
